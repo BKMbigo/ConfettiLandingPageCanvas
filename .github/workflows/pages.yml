@@ -37,7 +37,7 @@ jobs:
         uses: actions/upload-pages-artifact@v1
         with:
           # Upload entire repository
-          folder: 'build/distributions'
+          path: '*'
       - name: 'Deploy to GitHub Pages'
         uses: 'JamesIves/github-pages-deploy-action@v4.4.0'
         with:
