@@ -50,22 +50,17 @@ fun main() {
 
             var emojiFontFamily by remember { mutableStateOf<FontFamily?>(null) }
             var sansFontFamily by remember { mutableStateOf<FontFamily?>(null) }
-            //var sansItalicFontFamily by remember { mutableStateOf<FontFamily?>(null) }
 
             val screenScrollState = rememberScrollState()
 
             LaunchedEffect(Unit) {
-                val emojiBytes = client.getBytesProvider("/fonts/NotoColorEmoji.ttf")
+                val emojiBytes = client.getBytesProvider("/ConfettiLandingPageWASM/fonts/NotoColorEmoji.ttf")
                 val emojiTypeface = Typeface.makeFromData(Data.makeFromBytes(emojiBytes))
                 emojiFontFamily = FontFamily(Typeface(emojiTypeface))
 
-                val sansBytes = client.getBytesProvider("/fonts/OpenSans.ttf")
+                val sansBytes = client.getBytesProvider("/ConfettiLandingPageWASM/fonts/OpenSans.ttf")
                 val sansTypeface = Typeface.makeFromData(Data.makeFromBytes(sansBytes))
                 sansFontFamily = FontFamily(Typeface(sansTypeface))
-
-//                    val sansItalicBytes = client.getBytesProvider("/fonts/OpenSans-italic.ttf")
-//                    val sansItalicTypeface = Typeface.makeFromData(Data.makeFromBytes(sansItalicBytes))
-//                    sansItalicFontFamily = FontFamily(Typeface(sansItalicTypeface))
             }
 
 
@@ -101,7 +96,7 @@ fun main() {
                     ) {
                         ImageProvider(
                             provideImageBytes = {
-                                client.getBytesProvider("/images/github.png")
+                                client.getBytesProvider("/ConfettiLandingPageWASM/images/github.png")
                             },
                             modifier = Modifier.size(16.dp)
                         )
@@ -174,7 +169,7 @@ fun main() {
                         Spacer(Modifier.height(with(density) { 30.px.value.toDp() }))
                         ImageProvider(
                             provideImageBytes = {
-                                client.getBytesProvider("/images/screens.png")
+                                client.getBytesProvider("/ConfettiLandingPageWASM/images/screens.png")
                             },
                             modifier = Modifier
                                 .width(800.dp)
@@ -199,7 +194,7 @@ fun main() {
                         ) {
                             ImageProvider(
                                 provideImageBytes = {
-                                    client.getBytesProvider("/images/playstore.png")
+                                    client.getBytesProvider("/ConfettiLandingPageWASM/images/playstore.png")
                                 }
                             )
                         }
@@ -212,7 +207,7 @@ fun main() {
                         ) {
                             ImageProvider(
                                 provideImageBytes = {
-                                    client.getBytesProvider("/images/appstore.png")
+                                    client.getBytesProvider("/ConfettiLandingPageWASM/images/appstore.png")
                                 },
                                 modifier = Modifier.width(300.dp)
                             )
