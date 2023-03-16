@@ -40,7 +40,7 @@ import org.jetbrains.skia.Typeface
 import org.jetbrains.skiko.SkikoPointerEvent
 import org.jetbrains.skiko.wasm.onWasmReady
 
-const val resourcePath = "/ConfettiLandingPageWASM"
+const val resourcePath = "/ConfettiLandingPageCanvas"
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalComposeUiApi::class, ExperimentalFoundationApi::class)
 fun main() {
