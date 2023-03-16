@@ -40,6 +40,8 @@ import org.jetbrains.skia.Typeface
 import org.jetbrains.skiko.SkikoPointerEvent
 import org.jetbrains.skiko.wasm.onWasmReady
 
+const val resourcePath = "/ConfettiLandingPageWASM"
+
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalComposeUiApi::class, ExperimentalFoundationApi::class)
 fun main() {
     onWasmReady {
@@ -54,11 +56,11 @@ fun main() {
             val screenScrollState = rememberScrollState()
 
             LaunchedEffect(Unit) {
-                val emojiBytes = client.getBytesProvider("/ConfettiLandingPageWASM/fonts/NotoColorEmoji.ttf")
+                val emojiBytes = client.getBytesProvider("${resourcePath}/fonts/NotoColorEmoji.ttf")
                 val emojiTypeface = Typeface.makeFromData(Data.makeFromBytes(emojiBytes))
                 emojiFontFamily = FontFamily(Typeface(emojiTypeface))
 
-                val sansBytes = client.getBytesProvider("/ConfettiLandingPageWASM/fonts/OpenSans.ttf")
+                val sansBytes = client.getBytesProvider("${resourcePath}/fonts/OpenSans.ttf")
                 val sansTypeface = Typeface.makeFromData(Data.makeFromBytes(sansBytes))
                 sansFontFamily = FontFamily(Typeface(sansTypeface))
             }
@@ -96,16 +98,21 @@ fun main() {
                     ) {
                         ImageProvider(
                             provideImageBytes = {
-                                client.getBytesProvider("/ConfettiLandingPageWASM/images/github.png")
+                                client.getBytesProvider("${resourcePath}/images/github.png")
                             },
-                            modifier = Modifier.size(16.dp)
+                            modifier = Modifier.size(16.dp).onClick {
+                                window.location.href = "https://github.com/joreilly/Confetti"
+                            }
                         )
                         Spacer(Modifier.width(8.dp))
                         Text(
                             text = "GITHUB",
                             //color = Color(0x666),
                             fontSize = 13.px.value.sp,
-                            fontWeight = FontWeight.Bold
+                            fontWeight = FontWeight.Bold,
+                            modifier = Modifier.onClick {
+                                window.location.href = "https://github.com/joreilly/Confetti"
+                            }
                         )
                     }
                 }
@@ -169,7 +176,7 @@ fun main() {
                         Spacer(Modifier.height(with(density) { 30.px.value.toDp() }))
                         ImageProvider(
                             provideImageBytes = {
-                                client.getBytesProvider("/ConfettiLandingPageWASM/images/screens.png")
+                                client.getBytesProvider("${resourcePath}/images/screens.png")
                             },
                             modifier = Modifier
                                 .width(800.dp)
@@ -194,7 +201,7 @@ fun main() {
                         ) {
                             ImageProvider(
                                 provideImageBytes = {
-                                    client.getBytesProvider("/ConfettiLandingPageWASM/images/playstore.png")
+                                    client.getBytesProvider("${resourcePath}/images/playstore.png")
                                 }
                             )
                         }
@@ -207,7 +214,7 @@ fun main() {
                         ) {
                             ImageProvider(
                                 provideImageBytes = {
-                                    client.getBytesProvider("/ConfettiLandingPageWASM/images/appstore.png")
+                                    client.getBytesProvider("${resourcePath}/images/appstore.png")
                                 },
                                 modifier = Modifier.width(300.dp)
                             )
