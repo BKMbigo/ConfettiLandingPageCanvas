@@ -7,7 +7,6 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.onClick
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.*
@@ -41,8 +40,9 @@ import org.jetbrains.skiko.SkikoPointerEvent
 import org.jetbrains.skiko.wasm.onWasmReady
 
 const val resourcePath = "/ConfettiLandingPageCanvas"
+//const val resourcePath = ""
 
-@OptIn(ExperimentalMaterial3Api::class, ExperimentalComposeUiApi::class, ExperimentalFoundationApi::class)
+@OptIn(ExperimentalComposeUiApi::class, ExperimentalFoundationApi::class)
 fun main() {
     onWasmReady {
         BrowserViewportWindow("SIMPLE - Landing Page") {
@@ -56,11 +56,11 @@ fun main() {
             val screenScrollState = rememberScrollState()
 
             LaunchedEffect(Unit) {
-                val emojiBytes = client.getBytesProvider("${resourcePath}/fonts/NotoColorEmoji.ttf")
+                val emojiBytes = client.getBytesProvider("${resourcePath}/assets/fonts/NotoColorEmoji.ttf")
                 val emojiTypeface = Typeface.makeFromData(Data.makeFromBytes(emojiBytes))
                 emojiFontFamily = FontFamily(Typeface(emojiTypeface))
 
-                val sansBytes = client.getBytesProvider("${resourcePath}/fonts/OpenSans.ttf")
+                val sansBytes = client.getBytesProvider("${resourcePath}/assets/fonts/OpenSans.ttf")
                 val sansTypeface = Typeface.makeFromData(Data.makeFromBytes(sansBytes))
                 sansFontFamily = FontFamily(Typeface(sansTypeface))
             }
@@ -74,46 +74,61 @@ fun main() {
                     horizontalArrangement = Arrangement.SpaceBetween,
                     verticalAlignment = Alignment.CenterVertically
                 ) {
-                    Text(
-                        text = buildAnnotatedString {
-                            withStyle(SpanStyle(color = Color(0xFF876AFD))) {
-                                append("Confetti ")
-                            }
-                            withStyle(style = SpanStyle(fontFamily = emojiFontFamily)) {
-                                append("\uD83C\uDF8A")
-                            }
-                        },
-                        fontWeight = FontWeight.Bold,
-                        fontSize = with(density) { 30.px.value.toSp() },
+                    IconButton(
                         modifier = Modifier
                             .padding(start = with(density) { 15.px.value.toDp() })
-                    )
-                    Row(
+                            .width(250.dp),
+                        onClick = {
+                            window.location.href = "https://confetti-dev.app"
+                        }
+                    ) {
+                        Row {
+                            Text(
+                                text = buildAnnotatedString {
+                                    withStyle(SpanStyle(color = Color(0xFF876AFD))) {
+                                        append("Confetti ")
+                                    }
+                                    withStyle(style = SpanStyle(fontFamily = emojiFontFamily)) {
+                                        append("\uD83C\uDF8A")
+                                    }
+                                },
+                                fontWeight = FontWeight.Bold,
+                                fontSize = with(density) { 30.px.value.toSp() },
+                                maxLines = 1
+                            )
+                        }
+                    }
+                    IconButton(
+                        onClick = {
+                            window.location.href = "https://github.com/joreilly/Confetti"
+                        },
                         modifier = Modifier
                             .padding(end = with(density) { 15.px.value.toDp() })
-                            .onClick {
-                                window.location.href = "https://github.com/joreilly/Confetti"
-                            },
-                        verticalAlignment = Alignment.CenterVertically
+                            .width(100.dp)
                     ) {
-                        ImageProvider(
-                            provideImageBytes = {
-                                client.getBytesProvider("${resourcePath}/images/github.png")
-                            },
-                            modifier = Modifier.size(16.dp).onClick {
-                                window.location.href = "https://github.com/joreilly/Confetti"
-                            }
-                        )
-                        Spacer(Modifier.width(8.dp))
-                        Text(
-                            text = "GITHUB",
-                            //color = Color(0x666),
-                            fontSize = 13.px.value.sp,
-                            fontWeight = FontWeight.Bold,
-                            modifier = Modifier.onClick {
-                                window.location.href = "https://github.com/joreilly/Confetti"
-                            }
-                        )
+                        Row(
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            ImageProvider(
+                                provideImageBytes = {
+                                    client.getBytesProvider("${resourcePath}/assets/images/github.png")
+                                },
+                                modifier = Modifier.size(16.dp).onClick {
+                                    window.location.href = "https://github.com/joreilly/Confetti"
+                                }
+                            )
+                            Spacer(Modifier.width(8.dp))
+                            Text(
+                                text = "GITHUB",
+                                //color = Color(0x666),
+                                fontSize = 13.px.value.sp,
+                                fontWeight = FontWeight.Bold,
+                                modifier = Modifier.onClick {
+                                    window.location.href = "https://github.com/joreilly/Confetti"
+                                },
+                                maxLines = 1
+                            )
+                        }
                     }
                 }
                 Column(
@@ -176,7 +191,7 @@ fun main() {
                         Spacer(Modifier.height(with(density) { 30.px.value.toDp() }))
                         ImageProvider(
                             provideImageBytes = {
-                                client.getBytesProvider("${resourcePath}/images/screens.png")
+                                client.getBytesProvider("${resourcePath}/assets/images/screens.png")
                             },
                             modifier = Modifier
                                 .width(800.dp)
@@ -201,7 +216,7 @@ fun main() {
                         ) {
                             ImageProvider(
                                 provideImageBytes = {
-                                    client.getBytesProvider("${resourcePath}/images/playstore.png")
+                                    client.getBytesProvider("${resourcePath}/assets/images/playstore.png")
                                 }
                             )
                         }
@@ -214,7 +229,7 @@ fun main() {
                         ) {
                             ImageProvider(
                                 provideImageBytes = {
-                                    client.getBytesProvider("${resourcePath}/images/appstore.png")
+                                    client.getBytesProvider("${resourcePath}/assets/images/appstore.png")
                                 },
                                 modifier = Modifier.width(300.dp)
                             )
@@ -223,8 +238,9 @@ fun main() {
                 }
             }
         }
-
     }
+
+
 }
 
 private suspend fun HttpClient.getBytesProvider(url: String): ByteArray =
