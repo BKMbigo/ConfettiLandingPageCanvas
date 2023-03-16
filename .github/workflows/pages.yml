@@ -42,7 +42,7 @@ jobs:
           java-version: 11
       - run: ./gradlew assemble
       - name: Generate Docs
-        run: ./gradlew :browserProductionWebpack
+        run: ./gradlew :jsBrowserProductionWebpack
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
