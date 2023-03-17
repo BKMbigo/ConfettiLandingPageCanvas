@@ -32,6 +32,8 @@ import io.ktor.client.engine.js.*
 import io.ktor.client.request.*
 import io.ktor.client.statement.*
 import kotlinx.browser.window
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.launch
 import org.jetbrains.compose.web.css.px
 import org.jetbrains.skia.Data
@@ -47,23 +49,13 @@ fun main() {
     onWasmReady {
         BrowserViewportWindow("SIMPLE - Landing Page") {
             val density = LocalDensity.current
-            val scope = rememberCoroutineScope()
+            val scope = CoroutineScope(SupervisorJob())
             val client = HttpClient(Js)
 
             var emojiFontFamily by remember { mutableStateOf<FontFamily?>(null) }
             var sansFontFamily by remember { mutableStateOf<FontFamily?>(null) }
 
             val screenScrollState = rememberScrollState()
-
-            LaunchedEffect(Unit) {
-                val emojiBytes = client.getBytesProvider("${resourcePath}/assets/fonts/NotoColorEmoji.ttf")
-                val emojiTypeface = Typeface.makeFromData(Data.makeFromBytes(emojiBytes))
-                emojiFontFamily = FontFamily(Typeface(emojiTypeface))
-
-                val sansBytes = client.getBytesProvider("${resourcePath}/assets/fonts/OpenSans.ttf")
-                val sansTypeface = Typeface.makeFromData(Data.makeFromBytes(sansBytes))
-                sansFontFamily = FontFamily(Typeface(sansTypeface))
-            }
 
 
             Column {
@@ -79,7 +71,7 @@ fun main() {
                             .padding(start = with(density) { 15.px.value.toDp() })
                             .width(250.dp),
                         onClick = {
-                            window.location.href = "https://confetti-dev.app"
+                            window.location.href = "https://confetti-app.dev"
                         }
                     ) {
                         Row {
@@ -111,7 +103,7 @@ fun main() {
                         ) {
                             ImageProvider(
                                 provideImageBytes = {
-                                    client.getBytesProvider("${resourcePath}/assets/images/github.png")
+                                    client.getBytesProvider("https://github.com/BKMbigo/ConfettiLandingPageCanvas/blob/8c937f6efd536acc70618ec36c0086922bf031dd/src/jsMain/resources/assets/images/github.png")
                                 },
                                 modifier = Modifier.size(16.dp).onClick {
                                     window.location.href = "https://github.com/joreilly/Confetti"
@@ -120,7 +112,6 @@ fun main() {
                             Spacer(Modifier.width(8.dp))
                             Text(
                                 text = "GITHUB",
-                                //color = Color(0x666),
                                 fontSize = 13.px.value.sp,
                                 fontWeight = FontWeight.Bold,
                                 modifier = Modifier.onClick {
@@ -191,7 +182,7 @@ fun main() {
                         Spacer(Modifier.height(with(density) { 30.px.value.toDp() }))
                         ImageProvider(
                             provideImageBytes = {
-                                client.getBytesProvider("${resourcePath}/assets/images/screens.png")
+                                client.getBytesProvider("https://github.com/BKMbigo/ConfettiLandingPageCanvas/blob/8c937f6efd536acc70618ec36c0086922bf031dd/src/jsMain/resources/assets/images/screens.png")
                             },
                             modifier = Modifier
                                 .width(800.dp)
@@ -216,7 +207,7 @@ fun main() {
                         ) {
                             ImageProvider(
                                 provideImageBytes = {
-                                    client.getBytesProvider("${resourcePath}/assets/images/playstore.png")
+                                    client.getBytesProvider("https://github.com/BKMbigo/ConfettiLandingPageCanvas/blob/8c937f6efd536acc70618ec36c0086922bf031dd/src/jsMain/resources/assets/images/playstore.png")
                                 }
                             )
                         }
@@ -229,13 +220,27 @@ fun main() {
                         ) {
                             ImageProvider(
                                 provideImageBytes = {
-                                    client.getBytesProvider("${resourcePath}/assets/images/appstore.png")
+                                    client.getBytesProvider("https://github.com/BKMbigo/ConfettiLandingPageCanvas/blob/8c937f6efd536acc70618ec36c0086922bf031dd/src/jsMain/resources/assets/images/appstore.png")
                                 },
                                 modifier = Modifier.width(300.dp)
                             )
                         }
                     }
                 }
+            }
+
+            LaunchedEffect(Unit) {
+                client.getBytesProvider("https://github.com/BKMbigo/ConfettiLandingPageCanvas/blob/8c937f6efd536acc70618ec36c0086922bf031dd/src/jsMain/resources/assets/fonts/NotoColorEmoji.ttf")
+                    .let {
+                        val emojiTypeface = Typeface.makeFromData(Data.makeFromBytes(it))
+                        emojiFontFamily = FontFamily(Typeface(emojiTypeface))
+                    }
+
+                client.getBytesProvider("https://github.com/BKMbigo/ConfettiLandingPageCanvas/blob/8c937f6efd536acc70618ec36c0086922bf031dd/src/jsMain/resources/assets/fonts/OpenSans.ttf")
+                    .let {
+                        val sansTypeface = Typeface.makeFromData(Data.makeFromBytes(it))
+                        sansFontFamily = FontFamily(Typeface(sansTypeface))
+                    }
             }
         }
     }

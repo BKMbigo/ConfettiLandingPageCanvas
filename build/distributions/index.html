@@ -3,18 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <title>Confetti</title>
-
     <script src="skiko.js"></script>
-
-    <link rel="stylesheet" href="assets/css/animate.min.css">
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link href="assets/css/animate.min.css" rel="stylesheet">
+    <link href="assets/css/style.css" rel="stylesheet">
 </head>
 <body>
+<canvas id="ComposeTarget"></canvas>
 <div class="preloader">
     <div class="sk-spinner sk-spinner-rotating-plane">
     </div>
 </div>
-<canvas id="ComposeTarget"></canvas>
 <script src="ConfettiLandingPageWASM.js"></script>
+<script src="assets/js/jquery.js"></script>
+<script>
+    $(window).load(function () {
+        $('.preloader').fadeOut(3000);
+    });
+</script>
 </body>
 </html>

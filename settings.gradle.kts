@@ -12,5 +12,5 @@ pluginManagement {
     }
 }
 
-rootProject.name = "ConfettiLandingPageWASM"
+rootProject.name = "ConfettiLandingPageCanvas"
 

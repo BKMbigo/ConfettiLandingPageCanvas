@@ -1,5 +1,4 @@
-body
-{
+body {
     background: #fff;
     font-weight: 300;
     position: relative;
@@ -7,8 +6,8 @@ body
     height: 100%;
     overflow-x: hidden;
 }
-.preloader
-{
+
+.preloader {
     position: fixed;
     top: 0;
     left: 0;
@@ -26,8 +25,8 @@ body
     align-items: center;
     background: none repeat scroll 0 0 #fff;
 }
-.sk-spinner-rotating-plane.sk-spinner
-{
+
+.sk-spinner-rotating-plane.sk-spinner {
     width: 30px;
     height: 30px;
     background-color: #28a7e9;
@@ -39,25 +38,33 @@ body
 @-webkit-keyframes sk-rotatePlane {
     0% {
         -webkit-transform: perspective(120px) rotateX(0deg) rotateY(0deg);
-        transform: perspective(120px) rotateX(0deg) rotateY(0deg); }
+        transform: perspective(120px) rotateX(0deg) rotateY(0deg);
+    }
 
     50% {
         -webkit-transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg);
-        transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg); }
+        transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg);
+    }
 
     100% {
         -webkit-transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
-        transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg); } }
+        transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
+    }
+}
 
 @keyframes sk-rotatePlane {
     0% {
         -webkit-transform: perspective(120px) rotateX(0deg) rotateY(0deg);
-        transform: perspective(120px) rotateX(0deg) rotateY(0deg); }
+        transform: perspective(120px) rotateX(0deg) rotateY(0deg);
+    }
 
     50% {
         -webkit-transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg);
-        transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg); }
+        transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg);
+    }
 
     100% {
         -webkit-transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
-        transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg); } }
+        transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
+    }
+}
