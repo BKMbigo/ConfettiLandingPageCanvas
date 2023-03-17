@@ -79,7 +79,7 @@ fun main() {
                             .padding(start = with(density) { 15.px.value.toDp() })
                             .width(250.dp),
                         onClick = {
-                            window.location.href = "https://confetti-dev.app"
+                            window.location.href = "https://confetti-app.dev"
                         }
                     ) {
                         Row {
