@@ -103,7 +103,7 @@ fun main() {
                         ) {
                             ImageProvider(
                                 provideImageBytes = {
-                                    client.getBytesProvider("https://github.com/BKMbigo/ConfettiLandingPageCanvas/blob/8c937f6efd536acc70618ec36c0086922bf031dd/src/jsMain/resources/assets/images/github.png")
+                                    client.getBytesProvider("${resourcePath}/assets/images/github.png")
                                 },
                                 modifier = Modifier.size(16.dp).onClick {
                                     window.location.href = "https://github.com/joreilly/Confetti"
@@ -182,7 +182,7 @@ fun main() {
                         Spacer(Modifier.height(with(density) { 30.px.value.toDp() }))
                         ImageProvider(
                             provideImageBytes = {
-                                client.getBytesProvider("https://github.com/BKMbigo/ConfettiLandingPageCanvas/blob/8c937f6efd536acc70618ec36c0086922bf031dd/src/jsMain/resources/assets/images/screens.png")
+                                client.getBytesProvider("${resourcePath}/assets/images/screens.png")
                             },
                             modifier = Modifier
                                 .width(800.dp)
@@ -207,7 +207,7 @@ fun main() {
                         ) {
                             ImageProvider(
                                 provideImageBytes = {
-                                    client.getBytesProvider("https://github.com/BKMbigo/ConfettiLandingPageCanvas/blob/8c937f6efd536acc70618ec36c0086922bf031dd/src/jsMain/resources/assets/images/playstore.png")
+                                    client.getBytesProvider("{resourcePath}/assets/images/playstore.png")
                                 }
                             )
                         }
@@ -220,7 +220,7 @@ fun main() {
                         ) {
                             ImageProvider(
                                 provideImageBytes = {
-                                    client.getBytesProvider("https://github.com/BKMbigo/ConfettiLandingPageCanvas/blob/8c937f6efd536acc70618ec36c0086922bf031dd/src/jsMain/resources/assets/images/appstore.png")
+                                    client.getBytesProvider("${resourcePath}/assets/images/appstore.png")
                                 },
                                 modifier = Modifier.width(300.dp)
                             )
@@ -230,17 +230,15 @@ fun main() {
             }
 
             LaunchedEffect(Unit) {
-                client.getBytesProvider("https://github.com/BKMbigo/ConfettiLandingPageCanvas/blob/8c937f6efd536acc70618ec36c0086922bf031dd/src/jsMain/resources/assets/fonts/NotoColorEmoji.ttf")
-                    .let {
-                        val emojiTypeface = Typeface.makeFromData(Data.makeFromBytes(it))
-                        emojiFontFamily = FontFamily(Typeface(emojiTypeface))
-                    }
+                val emojiBytes = client.getBytesProvider("${resourcePath}/assets/fonts/NotoColorEmoji.ttf")
+                val emojiTypeface = Typeface.makeFromData(Data.makeFromBytes(emojiBytes))
+                emojiFontFamily = FontFamily(Typeface(emojiTypeface))
 
-                client.getBytesProvider("https://github.com/BKMbigo/ConfettiLandingPageCanvas/blob/8c937f6efd536acc70618ec36c0086922bf031dd/src/jsMain/resources/assets/fonts/OpenSans.ttf")
-                    .let {
-                        val sansTypeface = Typeface.makeFromData(Data.makeFromBytes(it))
-                        sansFontFamily = FontFamily(Typeface(sansTypeface))
-                    }
+
+                val sansBytes = client.getBytesProvider("${resourcePath}/assets/fonts/OpenSans.ttf")
+                val sansTypeface = Typeface.makeFromData(Data.makeFromBytes(sansBytes))
+                sansFontFamily = FontFamily(Typeface(sansTypeface))
+
             }
         }
     }
