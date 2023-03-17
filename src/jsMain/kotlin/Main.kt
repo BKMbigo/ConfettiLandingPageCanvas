@@ -207,7 +207,7 @@ fun main() {
                         ) {
                             ImageProvider(
                                 provideImageBytes = {
-                                    client.getBytesProvider("{resourcePath}/assets/images/playstore.png")
+                                    client.getBytesProvider("${resourcePath}/assets/images/playstore.png")
                                 }
                             )
                         }
